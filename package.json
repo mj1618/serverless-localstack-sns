@@ -1,6 +1,6 @@
 {
   "name": "serverless-localstack-sns",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Serverless plugin to run SNS off localstack for local development",
   "main": "dist/index.js",
   "scripts": {
