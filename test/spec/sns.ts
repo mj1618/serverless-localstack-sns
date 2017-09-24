@@ -38,6 +38,15 @@ describe("test", () => {
         await snsAdapter.publish("arn:aws:sns:us-east-1:123456789012:test-topic", "hello");
         expect(handler.getPongs()).to.eq(0);
     });
+
+    it("should unsubscribe", async () => {
+        plugin = new ServerlessLocalstackSns(createServerless(), {});
+        const snsAdapter = await plugin.start(MockSns);
+        plugin.unsubscribeAll();
+        snsAdapter.publish("arn:aws:sns:us-east-1:123456789012:test-topic", "hello");
+        await new Promise(res => setTimeout(res, 70));
+        expect(handler.getPongs()).to.eq(0);
+    });
 });
 
 const createServerless = () => {

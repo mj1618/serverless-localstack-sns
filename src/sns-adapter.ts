@@ -1,7 +1,6 @@
 import {SNS} from "aws-sdk";
 import * as express from "express";
 import {ListSubscriptionsResponse, CreateTopicResponse} from "aws-sdk/clients/sns.d";
-const app = express();
 
 export type IDebug = (msg: any, stack?: any) => void;
 
@@ -25,10 +24,12 @@ export class SNSAdapter implements ISNSAdapter {
     private debug: IDebug;
     private port: number;
     private server: any;
+    private app: any;
 
     constructor(endpoint, port, region = "us-east-1", debug) {
         this.debug = debug;
         this.port = port;
+        this.app = express();
         this.sns = new SNS({
             endpoint,
             region,
