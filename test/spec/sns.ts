@@ -23,7 +23,7 @@ describe("test", () => {
         await plugin.hooks["localstacksns:start:end"](MockSns);
     });
 
-    it("should send message", async () => {
+    it("should send event", async () => {
         plugin = new ServerlessLocalstackSns(createServerless(), {});
         const snsAdapter = await plugin.start(MockSns);
         await snsAdapter.publish("arn:aws:sns:us-east-1:123456789012:test-topic", "hello");
