@@ -8,7 +8,7 @@
     "watch": "tsc -p src -w",
     "test": "nyc ts-mocha \"test/**/*.ts\" -p src/",
     "lint": "tslint -p src/",
-    "prepublish": "npm run lint && npm run test && npm run build"
+    "prepare": "npm run lint && npm run test && npm run build"
   },
   "repository": {
     "type": "git",
@@ -20,6 +20,9 @@
     "sns",
     "localstack"
   ],
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org"
+  },
   "author": "Matthew James <matthew.stephen.james@gmail.com>",
   "license": "MIT",
   "bugs": {
