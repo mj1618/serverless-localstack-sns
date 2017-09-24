@@ -76,7 +76,7 @@ export class SNSAdapter implements ISNSAdapter {
         const subscribeEndpoint = "http://localhost:" + this.port + "/" + fnName;
         this.debug("subscribe: " + fnName + " " + arn);
         this.debug("subscribeEndpoint: " + subscribeEndpoint);
-        app.post("/" + fnName, (req, res) => {
+        this.app.post("/" + fnName, (req, res) => {
             this.debug("calling fn: " + fnName + " 1");
             handler(req.body, {}, (data) => {
                 res.send(data);
@@ -110,7 +110,7 @@ export class SNSAdapter implements ISNSAdapter {
 
     public listen() {
         this.debug("starting to listen on port: " + this.port);
-        this.server = app.listen(this.port);
+        this.server = this.app.listen(this.port);
     }
 
     public async stop() {
